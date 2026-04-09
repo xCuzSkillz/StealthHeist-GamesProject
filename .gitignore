@@ -54,3 +54,5 @@ crashlytics-build.properties
 # OS files
 .DS_Store
 Thumbs.db
+
+StealthHeist/.vs/
