@@ -102,7 +102,6 @@ public class FirstPersonController : MonoBehaviour
         isCrouching = crouched;
         float h = crouched ? crouchHeight : standingHeight;
         controller.height = h;
-        // Keep feet planted by pinning center to half-height.
         controller.center = new Vector3(controller.center.x, h * 0.5f, controller.center.z);
     }
 
@@ -110,7 +109,6 @@ public class FirstPersonController : MonoBehaviour
     {
         float gap = standingHeight - controller.height;
         if (gap <= 0.01f) return true;
-        // Raycast from just above the crouched capsule upward; if anything is in the gap, stay crouched.
         Vector3 origin = transform.position + Vector3.up * (controller.height + 0.01f);
         return !Physics.Raycast(origin, Vector3.up, gap, ~0, QueryTriggerInteraction.Ignore);
     }
