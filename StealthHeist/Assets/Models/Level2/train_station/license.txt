@@ -1,0 +1,11 @@
+Model Information:
+* title:	Train Station
+* source:	https://sketchfab.com/3d-models/train-station-e6488441642948bab95c49dafa98331c
+* author:	neutralize (say thanks) (https://sketchfab.com/neutralize)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Train Station" (https://sketchfab.com/3d-models/train-station-e6488441642948bab95c49dafa98331c) by neutralize (say thanks) (https://sketchfab.com/neutralize) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
