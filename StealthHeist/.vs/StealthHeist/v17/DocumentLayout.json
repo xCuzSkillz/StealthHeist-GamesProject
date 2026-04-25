@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{028BCB14-0CC0-523C-2040-0F6ADEFFD115}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\optionmenumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{028BCB14-0CC0-523C-2040-0F6ADEFFD115}|Assembly-CSharp.csproj|c:\\users\\admin\\desktop\\stealthheist-gamesproject\\stealthheist\\assets\\scripts\\buttonhovereffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{028BCB14-0CC0-523C-2040-0F6ADEFFD115}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\buttonhovereffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{028BCB14-0CC0-523C-2040-0F6ADEFFD115}|Assembly-CSharp.csproj|c:\\users\\admin\\desktop\\stealthheist-gamesproject\\stealthheist\\assets\\scripts\\menumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{028BCB14-0CC0-523C-2040-0F6ADEFFD115}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\menumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,20 +30,20 @@
               "RelativeToolTip": "Assets\\scripts\\OptionMenuManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T09:29:09.887Z",
+              "WhenOpened": "2026-04-25T20:10:40.113Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ButtonHoverEffect.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\StealthHeist-GamesProject\\StealthHeist\\Assets\\scripts\\ButtonHoverEffect.cs",
-              "RelativeDocumentMoniker": "Assets\\scripts\\ButtonHoverEffect.cs",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\StealthHeist-GamesProject\\StealthHeist\\Assets\\scripts\\ButtonHoverEffect.cs",
-              "RelativeToolTip": "Assets\\scripts\\ButtonHoverEffect.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "MenuManager.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\StealthHeist-GamesProject\\StealthHeist\\Assets\\scripts\\MenuManager.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\MenuManager.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\StealthHeist-GamesProject\\StealthHeist\\Assets\\scripts\\MenuManager.cs",
+              "RelativeToolTip": "Assets\\scripts\\MenuManager.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T09:09:31.233Z",
+              "WhenOpened": "2026-04-24T13:00:49.606Z",
               "EditorCaption": ""
             }
           ]

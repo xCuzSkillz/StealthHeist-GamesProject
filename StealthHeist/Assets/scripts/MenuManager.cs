@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -10,12 +9,7 @@ public class MenuManager : MonoBehaviour
 
     [Header("Panels")]
     public GameObject optionsPanel;
-
-    void Start()
-    {
-        if (optionsPanel != null)
-            optionsPanel.SetActive(false); // hide options at start
-    }
+    public GameObject selectLevelPanel;
 
     private void PlayClickSound()
     {
@@ -24,30 +18,28 @@ public class MenuManager : MonoBehaviour
             audioSource.PlayOneShot(mouseclick);
         }
     }
+
     public void StartGame()
     {
         PlayClickSound();
         SceneManager.LoadScene("GameScene"); // Replace with your main game scene name
     }
 
-    public void LevelSelect()
+    public void ToggleLevelSelect(bool state)
     {
         PlayClickSound();
-        SceneManager.LoadScene("LevelSelectScene"); // Replace with your level select scene name
+        selectLevelPanel.SetActive(state); // Change Level select panel state
     }
 
-    public void Options()
+    public void LoadScene(int index)
     {
-        PlayClickSound();
-        if (optionsPanel != null)
-            optionsPanel.SetActive(true);
+        SceneManager.LoadScene(index); // Load selected level scene from Level Select Panel
     }
 
-    public void CloseOptions()
+    public void ToggleOptions(bool state)
     {
         PlayClickSound();
-        if (optionsPanel != null)
-            optionsPanel.SetActive(false);
+        optionsPanel.SetActive(state); // change Option panel state
     }
 
     public void QuitGame()
