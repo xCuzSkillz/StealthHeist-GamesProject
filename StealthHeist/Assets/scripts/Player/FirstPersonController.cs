@@ -10,16 +10,30 @@ public class FirstPersonController : MonoBehaviour
     public float gravity = -15f;
     public float jumpHeight = 1.2f;
 
+    [Tooltip("Speeds are tuned for this reference height in meters. Speeds will scale with the player's actual CharacterController height.")]
+    public float referenceHeight = 1.0f;
+
+    [Header("Footsteps")]
+    public AudioClip walkClip;
+    [Range(0f, 1f)] public float footstepVolume = 0.7f;
+    public float walkPitch = 1f;
+    public float sprintPitch = 1.3f;
+    public float crouchPitch = 0.75f;
+    public float minMoveSpeedToPlay = 0.1f;
+
     [Header("Mouse Look")]
     public float mouseSensitivity = 0.15f;
     public float maxLookAngle = 85f;
 
     [Header("Crouch")]
-    public float crouchHeight = 1.1f;
+    [Range(0.3f, 0.9f)] public float crouchHeightRatio = 0.55f;
+    public float minCrouchHeight = 0.5f;
+    public float cameraCrouchOffset = 0f;
     public float crouchTransitionSpeed = 12f;
 
     private CharacterController controller;
     private Transform cameraTransform;
+    private AudioSource footstepSource;
     private float verticalVelocity;
     private float xRotation;
 
@@ -30,7 +44,10 @@ public class FirstPersonController : MonoBehaviour
 
     private float standingHeight;
     private float standingCameraY;
+    private float crouchHeight;
     private float crouchCameraY;
+    private float speedScale;
+    private float airTime;
 
     void Start()
     {
@@ -39,7 +56,21 @@ public class FirstPersonController : MonoBehaviour
 
         standingHeight = controller.height;
         standingCameraY = cameraTransform.localPosition.y;
-        crouchCameraY = standingCameraY - (standingHeight - crouchHeight);
+        float minValidHeight = controller.radius * 2f + 0.01f;
+        crouchHeight = Mathf.Max(minCrouchHeight, standingHeight * crouchHeightRatio);
+        crouchHeight = Mathf.Max(crouchHeight, minValidHeight);
+        crouchHeight = Mathf.Min(crouchHeight, standingHeight - 0.05f);
+        crouchCameraY = standingCameraY * (crouchHeight / standingHeight) + cameraCrouchOffset;
+
+        speedScale = Mathf.Max(0.2f, standingHeight / Mathf.Max(0.1f, referenceHeight));
+
+        footstepSource = GetComponent<AudioSource>();
+        if (footstepSource == null) footstepSource = gameObject.AddComponent<AudioSource>();
+        footstepSource.clip = walkClip;
+        footstepSource.loop = true;
+        footstepSource.playOnAwake = false;
+        footstepSource.volume = footstepVolume;
+        footstepSource.spatialBlend = 0f;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -51,6 +82,7 @@ public class FirstPersonController : MonoBehaviour
         HandleMouseLook();
         HandleMovement();
         UpdateCameraHeight();
+        UpdateFootsteps();
 
         if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
@@ -100,9 +132,12 @@ public class FirstPersonController : MonoBehaviour
     void SetCrouched(bool crouched)
     {
         isCrouching = crouched;
-        float h = crouched ? crouchHeight : standingHeight;
-        controller.height = h;
-        controller.center = new Vector3(controller.center.x, h * 0.5f, controller.center.z);
+        float oldHeight = controller.height;
+        float newHeight = crouched ? crouchHeight : standingHeight;
+        // Preserve foot position: capsule bottom = center.y - height/2 must stay constant.
+        float newCenterY = controller.center.y + (newHeight - oldHeight) * 0.5f;
+        controller.height = newHeight;
+        controller.center = new Vector3(controller.center.x, newCenterY, controller.center.z);
     }
 
     bool CanStandUp()
@@ -111,6 +146,29 @@ public class FirstPersonController : MonoBehaviour
         if (gap <= 0.01f) return true;
         Vector3 origin = transform.position + Vector3.up * (controller.height + 0.01f);
         return !Physics.Raycast(origin, Vector3.up, gap, ~0, QueryTriggerInteraction.Ignore);
+    }
+
+    void UpdateFootsteps()
+    {
+        if (footstepSource == null || footstepSource.clip == null) return;
+
+        if (controller.isGrounded) airTime = 0f;
+        else airTime += Time.deltaTime;
+
+        bool moving = moveInput.sqrMagnitude > 0.01f;
+        bool onGround = airTime < 0.12f;
+
+        if (moving && onGround)
+        {
+            float pitch = isCrouching ? crouchPitch : (isSprinting ? sprintPitch : walkPitch);
+            footstepSource.pitch = pitch;
+            footstepSource.volume = footstepVolume * (isCrouching ? 0.4f : 1f);
+            if (!footstepSource.isPlaying) footstepSource.Play();
+        }
+        else if (footstepSource.isPlaying)
+        {
+            footstepSource.Pause();
+        }
     }
 
     void UpdateCameraHeight()
@@ -143,6 +201,7 @@ public class FirstPersonController : MonoBehaviour
         float speed = isCrouching ? crouchSpeed
                     : isSprinting ? sprintSpeed
                                   : moveSpeed;
+        speed *= speedScale;
 
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
         controller.Move(move * speed * Time.deltaTime);

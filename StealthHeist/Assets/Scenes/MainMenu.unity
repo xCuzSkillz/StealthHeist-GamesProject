@@ -2258,7 +2258,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MenuManager
   audioSource: {fileID: 1053644168}
   mouseclick: {fileID: 8300000, guid: f97987e7ec2ff4e8691ccedd66926f03, type: 3}
+  mainPanel: {fileID: 648357588}
   optionsPanel: {fileID: 2093614888}
+  levelSelectPanel: {fileID: 0}
 --- !u!1 &693208193
 GameObject:
   m_ObjectHideFlags: 0
