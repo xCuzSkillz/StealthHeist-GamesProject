@@ -36,10 +36,11 @@ public class GuardAI : MonoBehaviour
         float distance = DistanceToPlayer();
         if (distance >= 0 && distance <= visionRange)
         {
+            Debug.Log("Player spotted");
             // Player is visible, interrupt waiting/patrolling
             state = (distance > visionRange / 2f) ? GuardAIState.Investigating : GuardAIState.Chasing;
             agent.SetDestination(player.position);
-            agent.speed = (state == GuardAIState.Chasing) ? defaultAgentSpeed * 2f : defaultAgentSpeed;
+            agent.speed = (state == GuardAIState.Chasing) ? defaultAgentSpeed * 3f : defaultAgentSpeed;
             return; // skip patrol logic
         }
 
@@ -88,18 +89,30 @@ public class GuardAI : MonoBehaviour
     {
         if (player == null) return -1;
 
-        Vector3 directionToPlayer = player.position - transform.position;
-        float distanceToPlayer = directionToPlayer.magnitude;
-        if (distanceToPlayer > visionRange) return -1;
+        Vector3 guardEye = transform.position + Vector3.up * 0.5f;
+        Vector3 playerChest = player.position + Vector3.up * 0.5f;
+        Vector3 direction = playerChest - guardEye;
+        float distance = direction.magnitude;
 
-        float angle = Vector3.Angle(transform.forward, directionToPlayer);
+        if (distance > visionRange) return -1;
+
+        float angle = Vector3.Angle(transform.forward, direction);
         if (angle > visionAngle / 2) return -1;
 
-        if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, visionRange))
+        // Layer mask to ignore the floor
+        int layerMask = ~LayerMask.GetMask("Floor");
+        if (Physics.Raycast(guardEye, direction, out RaycastHit hit, visionRange, layerMask))
         {
-            if (hit.transform == player) return hit.distance;
+            if (hit.transform == player || hit.transform.CompareTag("Player"))
+            {
+                Debug.Log("I SEE YOU");
+                return distance;
+            }
+            else
+            {
+                Debug.Log($"Blocked by: {hit.transform.name}");
+            }
         }
-
         return -1;
     }
 
