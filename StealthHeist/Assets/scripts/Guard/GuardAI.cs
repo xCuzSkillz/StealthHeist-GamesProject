@@ -97,8 +97,9 @@ public class GuardAI : MonoBehaviour
 
         if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, visionRange))
         {
-            if (hit.transform == player) return distanceToPlayer;
+            if (hit.transform == player) return hit.distance;
         }
+
         return -1;
     }
 
