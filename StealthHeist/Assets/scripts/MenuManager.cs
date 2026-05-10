@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -9,12 +8,15 @@ public class MenuManager : MonoBehaviour
     public AudioClip mouseclick;
 
     [Header("Panels")]
+    public GameObject mainPanel;
     public GameObject optionsPanel;
+    public GameObject levelSelectPanel;
 
     void Start()
     {
-        if (optionsPanel != null)
-            optionsPanel.SetActive(false); // hide options at start
+        if (optionsPanel != null) optionsPanel.SetActive(false);
+        if (levelSelectPanel != null) levelSelectPanel.SetActive(false);
+        if (mainPanel != null) mainPanel.SetActive(true);
     }
 
     private void PlayClickSound()
@@ -24,30 +26,44 @@ public class MenuManager : MonoBehaviour
             audioSource.PlayOneShot(mouseclick);
         }
     }
+
     public void StartGame()
     {
         PlayClickSound();
-        SceneManager.LoadScene("GameScene"); // Replace with your main game scene name
+        SceneManager.LoadScene("GameScene");
     }
 
     public void LevelSelect()
     {
         PlayClickSound();
-        SceneManager.LoadScene("LevelSelectScene"); // Replace with your level select scene name
+        if (mainPanel != null) mainPanel.SetActive(false);
+        if (levelSelectPanel != null) levelSelectPanel.SetActive(true);
+    }
+
+    public void CloseLevelSelect()
+    {
+        PlayClickSound();
+        if (levelSelectPanel != null) levelSelectPanel.SetActive(false);
+        if (mainPanel != null) mainPanel.SetActive(true);
+    }
+
+    public void LoadLevelByName(string sceneName)
+    {
+        PlayClickSound();
+        if (string.IsNullOrEmpty(sceneName)) return;
+        SceneManager.LoadScene(sceneName);
     }
 
     public void Options()
     {
         PlayClickSound();
-        if (optionsPanel != null)
-            optionsPanel.SetActive(true);
+        if (optionsPanel != null) optionsPanel.SetActive(true);
     }
 
     public void CloseOptions()
     {
         PlayClickSound();
-        if (optionsPanel != null)
-            optionsPanel.SetActive(false);
+        if (optionsPanel != null) optionsPanel.SetActive(false);
     }
 
     public void QuitGame()

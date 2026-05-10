@@ -78,35 +78,41 @@ public class FirstPersonController : MonoBehaviour
 
     void Update()
     {
+        PollInput();
         HandleCrouchInput();
         HandleMouseLook();
         HandleMovement();
         UpdateCameraHeight();
         UpdateFootsteps();
+    }
 
-        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+    void PollInput()
+    {
+        var kb = Keyboard.current;
+        if (kb != null)
         {
-            bool locked = Cursor.lockState == CursorLockMode.Locked;
-            Cursor.lockState = locked ? CursorLockMode.None : CursorLockMode.Locked;
-            Cursor.visible = locked;
+            float x = (kb.dKey.isPressed ? 1f : 0f) - (kb.aKey.isPressed ? 1f : 0f);
+            float y = (kb.wKey.isPressed ? 1f : 0f) - (kb.sKey.isPressed ? 1f : 0f);
+            moveInput = new Vector2(x, y);
+            isSprinting = kb.leftShiftKey.isPressed;
+
+            if (kb.spaceKey.wasPressedThisFrame && !isCrouching && controller.isGrounded)
+                verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
+        else
+        {
+            moveInput = Vector2.zero;
+            isSprinting = false;
+        }
+
+        var mouse = Mouse.current;
+        lookInput = mouse != null ? mouse.delta.ReadValue() : Vector2.zero;
     }
 
-    void OnMove(InputValue value)
-    {
-        moveInput = value.Get<Vector2>();
-    }
-
-    void OnLook(InputValue value)
-    {
-        lookInput = value.Get<Vector2>();
-    }
-
-    void OnSprint(InputValue value)
-    {
-        isSprinting = value.isPressed;
-    }
-
+    // Kept for compatibility with PlayerInput SendMessages; PollInput is the authoritative source.
+    void OnMove(InputValue value) { moveInput = value.Get<Vector2>(); }
+    void OnLook(InputValue value) { lookInput = value.Get<Vector2>(); }
+    void OnSprint(InputValue value) { isSprinting = value.isPressed; }
     void OnJump(InputValue value)
     {
         if (isCrouching) return;

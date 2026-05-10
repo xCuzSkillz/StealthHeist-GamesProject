@@ -16,6 +16,17 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public Color normalButtonColor = new Color32(33, 30, 47, 255); // dark background
     public Color hoverButtonColor = Color.white;
 
+    void OnEnable()
+    {
+        ApplyNormal();
+    }
+
+    void ApplyNormal()
+    {
+        if (buttonText != null) buttonText.color = normalTextColor;
+        if (buttonImage != null) buttonImage.color = normalButtonColor;
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (buttonText != null) buttonText.color = hoverTextColor;
@@ -24,7 +35,6 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (buttonText != null) buttonText.color = normalTextColor;
-        if (buttonImage != null) buttonImage.color = normalButtonColor;
+        ApplyNormal();
     }
 }
