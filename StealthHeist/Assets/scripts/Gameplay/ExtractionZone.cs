@@ -1,10 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(MeshRenderer))]
 public class ExtractionZone : MonoBehaviour
 {
     public string nextLevelName = "";   // leave empty to just show victory
     public GameObject victoryPanel;     // optional UI panel
+
+    void Start()
+    {
+        GetComponent<MeshRenderer>().enabled = false;
+    }
 
     void OnTriggerEnter(Collider other)
     {
