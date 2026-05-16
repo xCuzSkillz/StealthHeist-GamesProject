@@ -89,8 +89,8 @@ public class GuardAI : MonoBehaviour
     {
         if (player == null) return -1;
 
-        Vector3 guardEye = transform.position + Vector3.up * 0.5f;
-        Vector3 playerChest = player.position + Vector3.up * 0.5f;
+        Vector3 guardEye = transform.position + Vector3.up * 0.9f;
+        Vector3 playerChest = player.position + Vector3.up * 0.65f;
         Vector3 direction = playerChest - guardEye;
         float distance = direction.magnitude;
 
