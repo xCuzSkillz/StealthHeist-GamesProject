@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7410867412124131838}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,7 +136,6 @@ MonoBehaviour:
   interactRange: 2.5
   promptKey: E
   promptText: Open
-  geistFont: {fileID: 0}
 --- !u!1 &7080068820043543874
 GameObject:
   m_ObjectHideFlags: 0
