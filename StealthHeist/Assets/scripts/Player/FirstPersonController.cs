@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[DefaultExecutionOrder(-1000)]
 public class FirstPersonController : MonoBehaviour
 {
     [Header("Movement")]
@@ -49,8 +50,25 @@ public class FirstPersonController : MonoBehaviour
     private float speedScale;
     private float airTime;
 
+    void Awake()
+    {
+        var pi = GetComponent<PlayerInput>();
+        if (pi == null || pi.actions == null) return;
+
+        string json = PlayerPrefs.GetString("Rebinds.OverridesJson", "");
+        if (string.IsNullOrEmpty(json)) return;
+
+        // Force a clean re-resolve so composite Value actions (e.g. Move WASD) pick up overrides
+        pi.actions.Disable();
+        pi.actions.LoadBindingOverridesFromJson(json);
+        pi.actions.Enable();
+    }
+
     void Start()
     {
+        // Load saved mouse sensitivity from the menu (PlayerPrefs)
+        mouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", mouseSensitivity);
+
         controller = GetComponent<CharacterController>();
         cameraTransform = GetComponentInChildren<Camera>().transform;
 
