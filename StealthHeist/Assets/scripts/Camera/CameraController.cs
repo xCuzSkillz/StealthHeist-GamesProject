@@ -1,5 +1,9 @@
 using UnityEngine;
 
+namespace StealthHeist.Cameras
+{
+[ExecuteAlways]
+[SelectionBase]
 public class CameraController : MonoBehaviour
 {
     [Header("Rotation Settings")]
@@ -20,6 +24,15 @@ public class CameraController : MonoBehaviour
     [Header("Vision Settings")]
     public GameObject visionCone;
     public bool showVisionCone = true;
+
+    [Header("Cone Aim (relative to this GameObject)")]
+    [Tooltip("Where the cone tip sits, relative to this GameObject. Tune so the tip is on the camera lens.")]
+    public Vector3 coneLocalPosition = Vector3.zero;
+    [Tooltip("Cone rotation, relative to this GameObject.\n" +
+             "X (Pitch): negative = look UP, positive = look DOWN\n" +
+             "Y (Yaw):   negative = turn LEFT, positive = turn RIGHT\n" +
+             "Z (Roll):  twist the cone sideways (usually leave at 0)")]
+    public Vector3 coneLocalEuler = Vector3.zero;
 
     [Header("Detection Settings")]
     public bool enableDetection = true;
@@ -42,13 +55,32 @@ public class CameraController : MonoBehaviour
             visionCone.SetActive(showVisionCone);
     }
 
+    void LateUpdate()
+    {
+        if (visionCone == null) return;
+        visionCone.transform.localPosition = coneLocalPosition;
+
+        // Apply sweep as an additive yaw offset on top of the tuned aim
+        Vector3 finalEuler = coneLocalEuler;
+        if (enableRotation && rotationMode != RotationMode.Static)
+            finalEuler.y += currentAngle;
+
+        visionCone.transform.localRotation = Quaternion.Euler(finalEuler);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        if (visionCone == null) return;
+        Vector3 origin = visionCone.transform.position;
+        Vector3 dir = visionCone.transform.forward;
+        Gizmos.color = new Color(1f, 0.4f, 0.2f);
+        Gizmos.DrawLine(origin, origin + dir * 1.5f);
+        Gizmos.DrawSphere(origin + dir * 1.5f, 0.05f);
+    }
+
     void Update()
     {
-        if (!enableRotation || rotationMode == RotationMode.Static)
-        {
-            ApplyRotation(currentAngle);
-            return;
-        }
+        if (!enableRotation || rotationMode == RotationMode.Static) return;
 
         switch (rotationMode)
         {
@@ -60,8 +92,7 @@ public class CameraController : MonoBehaviour
                 HandleLoop();
                 break;
         }
-
-        ApplyRotation(currentAngle);
+        // currentAngle is the swept yaw offset; applied to the cone in LateUpdate
     }
 
     void HandlePingPong()
@@ -95,8 +126,5 @@ public class CameraController : MonoBehaviour
             currentAngle -= 360f;
     }
 
-    void ApplyRotation(float angle)
-    {
-        transform.localRotation = Quaternion.Euler(verticalAngle, angle, 0);
-    }
+}
 }

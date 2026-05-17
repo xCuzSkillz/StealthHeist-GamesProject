@@ -1,73 +1,71 @@
 using UnityEngine;
 
+namespace StealthHeist.Cameras
+{
 public class CameraDetection : MonoBehaviour
 {
     private CameraController controller;
 
-    [Header("Raycast Settings")]
+    [Header("Detection Geometry")]
     public Transform cameraEye;
+    public float viewDistance = 10f;
+    [Range(0f, 180f)] public float viewAngle = 90f;
+
+    [Header("Layers")]
     public LayerMask obstacleMask;
     public LayerMask playerMask;
 
-    private bool playerInside = false;
-    private Transform player;
+    [Header("Audio (optional)")]
+    public AudioSource alertSource;
+
+    private bool playerDetected;
 
     void Start()
     {
         controller = GetComponentInParent<CameraController>();
+        if (cameraEye == null && controller != null && controller.visionCone != null)
+            cameraEye = controller.visionCone.transform;
+        if (cameraEye == null) cameraEye = transform;
     }
 
     void Update()
     {
-        if (!controller.enableDetection) return;
+        if (controller == null || !controller.enableDetection) return;
 
-        if (playerInside)
+        bool sees = CanSeePlayer();
+
+        if (sees && !playerDetected)
         {
-            CheckLineOfSight();
+            playerDetected = true;
+            if (UIManager.Instance != null) UIManager.Instance.ShowDetectionMessage();
+            if (alertSource != null && !alertSource.isPlaying) alertSource.Play();
+        }
+        else if (!sees && playerDetected)
+        {
+            playerDetected = false;
+            if (UIManager.Instance != null) UIManager.Instance.HideDetectionMessage();
         }
     }
 
-    void CheckLineOfSight()
+    bool CanSeePlayer()
     {
-        Vector3 direction = (player.position - cameraEye.position).normalized;
-
-        float distance = Vector3.Distance(cameraEye.position, player.position);
-
-        Ray ray = new Ray(cameraEye.position, direction);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, distance))
+        Collider[] hits = Physics.OverlapSphere(cameraEye.position, viewDistance, playerMask);
+        for (int i = 0; i < hits.Length; i++)
         {
-            // If ray hits player first
-            if (((1 << hit.collider.gameObject.layer) & playerMask) != 0)
-            {
-                UIManager.Instance.ShowDetectionMessage();
-            }
-            else
-            {
-                UIManager.Instance.HideDetectionMessage();
-            }
+            Vector3 toPlayer = hits[i].transform.position - cameraEye.position;
+            float dist = toPlayer.magnitude;
+            if (dist < 0.001f) continue;
+
+            Vector3 dir = toPlayer / dist;
+            if (Vector3.Angle(cameraEye.forward, dir) > viewAngle * 0.5f) continue;
+
+            if (obstacleMask.value != 0 &&
+                Physics.Raycast(cameraEye.position, dir, dist, obstacleMask, QueryTriggerInteraction.Ignore))
+                continue;
+
+            return true;
         }
+        return false;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!controller.enableDetection) return;
-
-        if (other.CompareTag("Player"))
-        {
-            playerInside = true;
-            player = other.transform;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInside = false;
-            player = null;
-
-            UIManager.Instance.HideDetectionMessage();
-        }
-    }
+}
 }
