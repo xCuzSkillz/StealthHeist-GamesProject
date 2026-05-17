@@ -59,8 +59,6 @@ public class CameraController : MonoBehaviour
     {
         if (visionCone == null) return;
         visionCone.transform.localPosition = coneLocalPosition;
-
-        // Apply sweep as an additive yaw offset on top of the tuned aim
         Vector3 finalEuler = coneLocalEuler;
         if (enableRotation && rotationMode != RotationMode.Static)
             finalEuler.y += currentAngle;
