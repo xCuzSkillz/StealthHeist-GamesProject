@@ -900,7 +900,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -923,11 +929,11 @@ PlayerSettings:
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
   enableDirectStorage: 0
-  cloudProjectId: c7deb525-25ac-4d88-9f04-27c6ce97b166
+  cloudProjectId: f0195396-1b14-4f6f-b82b-57e7709dbc58
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: StealthHeist
-  organizationId: pvpplayer403020
+  projectName: StealthHeist (1)
+  organizationId: imuswiii
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

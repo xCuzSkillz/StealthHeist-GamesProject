@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Artifact
+  - LockedLocker
+  - LockedDoor
+  - HidingSpot
+  - Painting
+  - Ceiling
   layers:
   - Default
   - TransparentFX

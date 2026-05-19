@@ -1,18 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\Polytechnic\\IT8101 - Game Development\\Project\\StealthHeist-GamesProject\\StealthHeist\\",
+  "WorkspaceRootPath": "C:\\Users\\u1001\\Documents\\StealthHeist-GamesProject\\StealthHeist\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{028BCB14-0CC0-523C-2040-0F6ADEFFD115}|Assembly-CSharp.csproj|c:\\users\\user\\desktop\\polytechnic\\it8101 - game development\\project\\stealthheist-gamesproject\\stealthheist\\assets\\scripts\\camera\\visionconemesh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{028BCB14-0CC0-523C-2040-0F6ADEFFD115}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\camera\\visionconemesh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F6FE62E9-4928-27C9-E3E2-A21434F04ABD}|Unity.RenderPipelines.Universal.Shaders.csproj|c:\\users\\u1001\\documents\\stealthheist-gamesproject\\stealthheist\\library\\packagecache\\com.unity.render-pipelines.universal@580a03820d50\\shaders\\lit.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{F6FE62E9-4928-27C9-E3E2-A21434F04ABD}|Unity.RenderPipelines.Universal.Shaders.csproj|solutionrelative:library\\packagecache\\com.unity.render-pipelines.universal@580a03820d50\\shaders\\lit.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{028BCB14-0CC0-523C-2040-0F6ADEFFD115}|Assembly-CSharp.csproj|c:\\users\\user\\desktop\\polytechnic\\it8101 - game development\\project\\stealthheist-gamesproject\\stealthheist\\assets\\scripts\\camera\\cameradetection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{028BCB14-0CC0-523C-2040-0F6ADEFFD115}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\camera\\cameradetection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{028BCB14-0CC0-523C-2040-0F6ADEFFD115}|Assembly-CSharp.csproj|C:\\Users\\User\\Desktop\\Polytechnic\\IT8101 - Game Development\\Project\\StealthHeist-GamesProject\\StealthHeist\\assets\\scripts\\camera\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{028BCB14-0CC0-523C-2040-0F6ADEFFD115}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\camera\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\u1001\\Documents\\StealthHeist-GamesProject\\StealthHeist\\Library\\PackageCache\\com.unity.ai.assistant@667f49aff9c0\\Modules\\Unity.AI.Toolkit.Accounts\\Services\\States\\SettingsState.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.ai.assistant@667f49aff9c0\\Modules\\Unity.AI.Toolkit.Accounts\\Services\\States\\SettingsState.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,40 +23,28 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "VisionConeMesh.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Polytechnic\\IT8101 - Game Development\\Project\\StealthHeist-GamesProject\\StealthHeist\\Assets\\scripts\\Camera\\VisionConeMesh.cs",
-              "RelativeDocumentMoniker": "Assets\\scripts\\Camera\\VisionConeMesh.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\Polytechnic\\IT8101 - Game Development\\Project\\StealthHeist-GamesProject\\StealthHeist\\Assets\\scripts\\Camera\\VisionConeMesh.cs",
-              "RelativeToolTip": "Assets\\scripts\\Camera\\VisionConeMesh.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAIwDAAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T11:36:54.908Z",
+              "Title": "Lit.shader",
+              "DocumentMoniker": "C:\\Users\\u1001\\Documents\\StealthHeist-GamesProject\\StealthHeist\\Library\\PackageCache\\com.unity.render-pipelines.universal@580a03820d50\\Shaders\\Lit.shader",
+              "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.render-pipelines.universal@580a03820d50\\Shaders\\Lit.shader",
+              "ToolTip": "C:\\Users\\u1001\\Documents\\StealthHeist-GamesProject\\StealthHeist\\Library\\PackageCache\\com.unity.render-pipelines.universal@580a03820d50\\Shaders\\Lit.shader",
+              "RelativeToolTip": "Library\\PackageCache\\com.unity.render-pipelines.universal@580a03820d50\\Shaders\\Lit.shader",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
+              "WhenOpened": "2026-05-16T20:53:34.832Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CameraDetection.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Polytechnic\\IT8101 - Game Development\\Project\\StealthHeist-GamesProject\\StealthHeist\\Assets\\scripts\\Camera\\CameraDetection.cs",
-              "RelativeDocumentMoniker": "Assets\\scripts\\Camera\\CameraDetection.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\Polytechnic\\IT8101 - Game Development\\Project\\StealthHeist-GamesProject\\StealthHeist\\Assets\\scripts\\Camera\\CameraDetection.cs",
-              "RelativeToolTip": "Assets\\scripts\\Camera\\CameraDetection.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEgAAAABAAAAAAAAAA==",
+              "Title": "SettingsState.cs",
+              "DocumentMoniker": "C:\\Users\\u1001\\Documents\\StealthHeist-GamesProject\\StealthHeist\\Library\\PackageCache\\com.unity.ai.assistant@667f49aff9c0\\Modules\\Unity.AI.Toolkit.Accounts\\Services\\States\\SettingsState.cs",
+              "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.ai.assistant@667f49aff9c0\\Modules\\Unity.AI.Toolkit.Accounts\\Services\\States\\SettingsState.cs",
+              "ToolTip": "C:\\Users\\u1001\\Documents\\StealthHeist-GamesProject\\StealthHeist\\Library\\PackageCache\\com.unity.ai.assistant@667f49aff9c0\\Modules\\Unity.AI.Toolkit.Accounts\\Services\\States\\SettingsState.cs",
+              "RelativeToolTip": "Library\\PackageCache\\com.unity.ai.assistant@667f49aff9c0\\Modules\\Unity.AI.Toolkit.Accounts\\Services\\States\\SettingsState.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAMwGwAAABcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T16:42:08.898Z",
+              "WhenOpened": "2026-05-15T23:34:58.416Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CameraController.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Polytechnic\\IT8101 - Game Development\\Project\\StealthHeist-GamesProject\\StealthHeist\\Assets\\scripts\\Camera\\CameraController.cs",
-              "RelativeDocumentMoniker": "Assets\\scripts\\Camera\\CameraController.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\Polytechnic\\IT8101 - Game Development\\Project\\StealthHeist-GamesProject\\StealthHeist\\Assets\\scripts\\Camera\\CameraController.cs",
-              "RelativeToolTip": "Assets\\scripts\\Camera\\CameraController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T16:40:46.253Z"
             }
           ]
         }
