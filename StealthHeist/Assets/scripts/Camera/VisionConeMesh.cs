@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+namespace StealthHeist.Cameras
+{
+[ExecuteAlways]
 [RequireComponent(typeof(MeshFilter))]
 public class VisionConeMesh : MonoBehaviour
 {
@@ -42,7 +45,7 @@ public class VisionConeMesh : MonoBehaviour
             float currentAngle = startAngle + angleStep * i;
 
             Vector3 direction =
-                Quaternion.Euler(0, currentAngle, 0) * transform.forward;
+                Quaternion.AngleAxis(currentAngle, transform.up) * transform.forward;
 
             Vector3 vertex;
 
@@ -82,4 +85,5 @@ public class VisionConeMesh : MonoBehaviour
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
     }
+}
 }
